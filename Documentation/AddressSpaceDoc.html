@@ -1,0 +1,1274 @@
+
+
+<html>
+<head>
+  <title>OPC-UA address space documentation for WIB_OPC_UA</title>
+</head>
+<body>
+<h1>
+  OPC-UA address space documentation for WIB_OPC_UA
+</h1>
+
+
+Jump to:
+  <a href="#class_FEMBPower">FEMBPower</a>
+  <a href="#class_Sensors">Sensors</a>
+  <a href="#class_TimingEndpoint">TimingEndpoint</a>
+  <a href="#class_WIB">WIB</a>
+
+  <a id="class_FEMBPower">
+    <h2>FEMBPower</h2>
+  </a>
+
+        <div style="background-color:#eeeeff">
+      <font color="blue">DOC</font>
+        
+			Control the FEMB power subsystem on the WIB
+		
+    </div>
+  
+            Variables:
+            <ul>
+                          <li>
+            <b>dc2dc_o1_setpoint</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read+write
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				Voltage setpoint for DC2DC O1 to be used for next set
+				command
+			
+              </div>
+                      </li>
+                    <li>
+            <b>dc2dc_o2_setpoint</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read+write
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				Voltage setpoint for DC2DC O2 to be used for next set
+				command
+			
+              </div>
+                      </li>
+                    <li>
+            <b>dc2dc_o3_setpoint</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read+write
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				Voltage setpoint for DC2DC O3 to be used for next set
+				command
+			
+              </div>
+                      </li>
+                    <li>
+            <b>dc2dc_o4_setpoint</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read+write
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				Voltage setpoint for DC2DC O4 to be used for next set
+				command
+			
+              </div>
+                      </li>
+                    <li>
+            <b>ldo_a0_setpoint</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read+write
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				Voltage setpoint for LDO A0 to be used for next set
+				command
+			
+              </div>
+                      </li>
+                    <li>
+            <b>ldo_a1_setpoint</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read+write
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				Voltage setpoint for LDO A0 to be used for next set
+				command
+			
+              </div>
+                      </li>
+                </ul>
+            Methods:
+      <ul>
+                  <li>
+              <b>set</b>
+                              <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                  
+				Set the power state of the FEMBs on the WIB using the
+				current voltage settings
+			
+                </div>
+                                            <br/>
+                Arguments:
+                <ul>
+                                      <li>
+                      femb0_on (OpcUa_Boolean )
+                                          </li>
+                                      <li>
+                      femb1_on (OpcUa_Boolean )
+                                          </li>
+                                      <li>
+                      femb2_on (OpcUa_Boolean )
+                                          </li>
+                                      <li>
+                      femb3_on (OpcUa_Boolean )
+                                          </li>
+                                      <li>
+                      cold (OpcUa_Boolean )
+                                          </li>
+                                      <li>
+                      stage (OpcUa_UInt32 )
+                                          </li>
+                                  </ul>
+              
+                              <br/>
+                Return values:
+                <ul>
+                                      <li>
+                      success (OpcUa_Boolean )
+                                          </li>
+                                  </ul>
+                        </li>
+              </ul>
+          <a id="class_Sensors">
+    <h2>Sensors</h2>
+  </a>
+
+        <div style="background-color:#eeeeff">
+      <font color="blue">DOC</font>
+        Read the onboard WIB sensors
+    </div>
+  
+            Variables:
+            <ul>
+                          <li>
+            <b>ad7414_49_temp</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                WIB Temp 1
+              </div>
+                      </li>
+                    <li>
+            <b>ad7414_4a_temp</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                WIB Temp 3
+              </div>
+                      </li>
+                    <li>
+            <b>ad7414_4d_temp</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                WIB Temp 2
+              </div>
+                      </li>
+                    <li>
+            <b>femb0_dc2dc_ltc2991_v0</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 DC2DC O1 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb0_dc2dc_ltc2991_v1</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 DC2DC O1 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb0_dc2dc_ltc2991_v2</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 DC2DC O2 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb0_dc2dc_ltc2991_v3</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 DC2DC O2 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb0_dc2dc_ltc2991_v4</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 DC2DC O3 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb0_dc2dc_ltc2991_v5</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 DC2DC O3 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb0_dc2dc_ltc2991_v6</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 DC2DC O4 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb0_dc2dc_ltc2991_v7</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 DC2DC O4 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb1_dc2dc_ltc2991_v0</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 DC2DC O1 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb1_dc2dc_ltc2991_v1</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 DC2DC O1 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb1_dc2dc_ltc2991_v2</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 DC2DC O2 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb1_dc2dc_ltc2991_v3</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 DC2DC O2 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb1_dc2dc_ltc2991_v4</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 DC2DC O3 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb1_dc2dc_ltc2991_v5</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 DC2DC O3 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb1_dc2dc_ltc2991_v6</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 DC2DC O4 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb1_dc2dc_ltc2991_v7</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 DC2DC O4 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb2_dc2dc_ltc2991_v0</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 DC2DC O1 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb2_dc2dc_ltc2991_v1</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 DC2DC O1 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb2_dc2dc_ltc2991_v2</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 DC2DC O2 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb2_dc2dc_ltc2991_v3</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 DC2DC O2 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb2_dc2dc_ltc2991_v4</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 DC2DC O3 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb2_dc2dc_ltc2991_v5</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 DC2DC O3 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb2_dc2dc_ltc2991_v6</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 DC2DC O4 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb2_dc2dc_ltc2991_v7</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 DC2DC O4 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb3_dc2dc_ltc2991_v0</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 DC2DC O1 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb3_dc2dc_ltc2991_v1</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 DC2DC O1 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb3_dc2dc_ltc2991_v2</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 DC2DC O2 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb3_dc2dc_ltc2991_v3</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 DC2DC O2 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb3_dc2dc_ltc2991_v4</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 DC2DC O3 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb3_dc2dc_ltc2991_v5</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 DC2DC O3 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb3_dc2dc_ltc2991_v6</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 DC2DC O4 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb3_dc2dc_ltc2991_v7</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 DC2DC O4 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_bias_ltc2991_v0</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                FEMB0 Bias 5V (pre-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>femb_bias_ltc2991_v1</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 Bias 5V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_bias_ltc2991_v2</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                FEMB1 Bias 5V (pre-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>femb_bias_ltc2991_v3</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 Bias 5V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_bias_ltc2991_v4</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                FEMB2 Bias 5V (pre-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>femb_bias_ltc2991_v5</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 Bias 5V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_bias_ltc2991_v6</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                FEMB3 Bias 5V (pre-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>femb_bias_ltc2991_v7</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 Bias 5V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a0_ltc2991_v0</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 LDO A0 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a0_ltc2991_v1</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 LDO A0 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a0_ltc2991_v2</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 LDO A0 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a0_ltc2991_v3</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 LDO A0 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a0_ltc2991_v4</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 LDO A0 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a0_ltc2991_v5</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 LDO A0 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a0_ltc2991_v6</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 LDO A0 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a0_ltc2991_v7</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 LDO A0 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a1_ltc2991_v0</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 LDO A1 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a1_ltc2991_v1</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB0 LDO A1 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a1_ltc2991_v2</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 LDO A1 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a1_ltc2991_v3</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB1 LDO A1 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a1_ltc2991_v4</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 LDO A1 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a1_ltc2991_v5</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB2 LDO A1 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a1_ltc2991_v6</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 LDO A1 V (pre-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>femb_ldo_a1_ltc2991_v7</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				FEMB3 LDO A1 V (post-sense)
+			
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2499_15_temp0</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                FEMB0 LMT4644 Temp
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2499_15_temp1</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                FEMB1 LMT4644 Temp
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2499_15_temp2</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                FEMB2 LMT4644 Temp
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2499_15_temp3</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                FEMB3 LMT4644 Temp
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2499_15_temp4</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                WIB LMT4644_1 Temp
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2499_15_temp5</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                WIB LMT4644_2 Temp
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2499_15_temp6</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                WIB LMT4644_3 Temp
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_48_v0</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                0.85V (pre-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_48_v1</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                0.85V (post-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_48_v2</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                0.9V (pre-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_48_v3</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                0.9V (post-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_48_v4</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                2.5V (pre-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_48_v5</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                2.5V (post-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_48_v6</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                1.8V (pre-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_48_v7</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                1.8V (post-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_4c_v0</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                1.2V (pre-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_4c_v1</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                1.2V (post-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_4c_v2</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                3.3V (pre-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_4c_v3</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                3.3V (post-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_4e_v0</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                5V (pre-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_4e_v1</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                5V (post-sense)
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_4e_v2</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                VCCPSPLL_Z_1P2V
+              </div>
+                      </li>
+                    <li>
+            <b>ltc2990_4e_v3</b> (dataType=OpcUa_Double;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                PS_DDR4_VTT
+              </div>
+                      </li>
+                    <li>
+            <b>poll_period</b> (dataType=OpcUa_UInt32;
+                          cache-variable;
+                        access=            read+write
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				Sensor polling period in seconds. Zero for no automatic
+				polling.
+			
+              </div>
+                      </li>
+                </ul>
+            Methods:
+      <ul>
+                  <li>
+              <b>poll</b>
+                              <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                  
+				Poll the status of the sensors immediately
+			
+                </div>
+                            
+                              <br/>
+                Return values:
+                <ul>
+                                      <li>
+                      success (OpcUa_Boolean )
+                                          </li>
+                                  </ul>
+                        </li>
+              </ul>
+          <a id="class_TimingEndpoint">
+    <h2>TimingEndpoint</h2>
+  </a>
+
+        <div style="background-color:#eeeeff">
+      <font color="blue">DOC</font>
+        
+			Monitor and reset the timing endpoint on the WIB
+		
+    </div>
+  
+            Variables:
+            <ul>
+                          <li>
+            <b>ept_status</b> (dataType=OpcUa_UInt32;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                Firmware status register
+              </div>
+                      </li>
+                    <li>
+            <b>lol_flg_val</b> (dataType=OpcUa_Byte;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				CDR sticky Loss Of Lock register
+			
+              </div>
+                      </li>
+                    <li>
+            <b>lol_val</b> (dataType=OpcUa_Byte;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                CDR Loss Of Lock register
+              </div>
+                      </li>
+                    <li>
+            <b>los_flg_val</b> (dataType=OpcUa_Byte;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				CDR stick Loss Of Signal register
+			
+              </div>
+                      </li>
+                    <li>
+            <b>los_val</b> (dataType=OpcUa_Byte;
+                          cache-variable;
+                        access=            read-only
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				CDR Loss Of Signal register
+			
+              </div>
+                      </li>
+                    <li>
+            <b>poll_period</b> (dataType=OpcUa_UInt32;
+                          cache-variable;
+                        access=            read+write
+      )
+            <br/>
+                          <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                
+				Endpoint polling period in seconds. Zero for no
+				automatic polling.
+			
+              </div>
+                      </li>
+                </ul>
+            Methods:
+      <ul>
+                  <li>
+              <b>poll</b>
+                              <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                  
+				Poll the status of the timing endpoint immediately
+			
+                </div>
+                            
+                              <br/>
+                Return values:
+                <ul>
+                                      <li>
+                      success (OpcUa_Boolean )
+                                          </li>
+                                  </ul>
+                        </li>
+              </ul>
+          <a id="class_WIB">
+    <h2>WIB</h2>
+  </a>
+
+        <div style="background-color:#eeeeff">
+      <font color="blue">DOC</font>
+        
+			Interface to the wib_server control software
+		
+    </div>
+  
+              Methods:
+      <ul>
+                  <li>
+              <b>getFWVersion</b>
+                              <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                  
+				Return the firmware build timestamp register
+			
+                </div>
+                            
+                              <br/>
+                Return values:
+                <ul>
+                                      <li>
+                      version (OpcUa_UInt32 )
+                                          </li>
+                                  </ul>
+                        </li>
+                  <li>
+              <b>getSWVersion</b>
+                              <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                  
+				Return the software git commit hash
+			
+                </div>
+                            
+                              <br/>
+                Return values:
+                <ul>
+                                      <li>
+                      version (UaString )
+                                          </li>
+                                  </ul>
+                        </li>
+              </ul>
+            Classes possible to be children objects:
+          <a href="#class_FEMBPower">FEMBPower</a>
+          <a href="#class_Sensors">Sensors</a>
+          <a href="#class_TimingEndpoint">TimingEndpoint</a>
+      </body>
+</html>

@@ -1,0 +1,217 @@
+
+
+
+<html>
+<head>
+  <style>
+    li {margin-bottom: 10pt;}
+  </style>
+</head>
+  <h1>Configuration documentation for WIB_OPC_UA</h1>
+
+  Jump to:
+                <a href="#class_FEMBPower">FEMBPower</a>
+                    <a href="#class_Sensors">Sensors</a>
+                    <a href="#class_TimingEndpoint">TimingEndpoint</a>
+                    <a href="#class_WIB">WIB</a>
+      
+                <a id="class_FEMBPower"><h2>FEMBPower</h2></a>
+                    <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                      
+			Control the FEMB power subsystem on the WIB
+		
+                  </div>
+        <br/>
+      
+      Configuration attributes:
+      <ul>
+            	      Class FEMBPower has no configuration entries.
+      
+                              <li>
+                  <b>dc2dc_o1_setpoint</b> (OpcUa_Double) mandatory
+        <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+              
+				Voltage setpoint for DC2DC O1 to be used for next set
+				command
+			
+          </div>
+        
+  
+
+          </li>
+                  <li>
+                  <b>dc2dc_o2_setpoint</b> (OpcUa_Double) mandatory
+        <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+              
+				Voltage setpoint for DC2DC O2 to be used for next set
+				command
+			
+          </div>
+        
+  
+
+          </li>
+                  <li>
+                  <b>dc2dc_o3_setpoint</b> (OpcUa_Double) mandatory
+        <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+              
+				Voltage setpoint for DC2DC O3 to be used for next set
+				command
+			
+          </div>
+        
+  
+
+          </li>
+                  <li>
+                  <b>dc2dc_o4_setpoint</b> (OpcUa_Double) mandatory
+        <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+              
+				Voltage setpoint for DC2DC O4 to be used for next set
+				command
+			
+          </div>
+        
+  
+
+          </li>
+                  <li>
+                  <b>ldo_a0_setpoint</b> (OpcUa_Double) mandatory
+        <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+              
+				Voltage setpoint for LDO A0 to be used for next set
+				command
+			
+          </div>
+        
+  
+
+          </li>
+                  <li>
+                  <b>ldo_a1_setpoint</b> (OpcUa_Double) mandatory
+        <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+              
+				Voltage setpoint for LDO A0 to be used for next set
+				command
+			
+          </div>
+        
+  
+
+          </li>
+                    </ul>
+
+      Possible children:
+      <a href="#class_CalculatedVariable">CalculatedVariable</a>
+      <a href="#class_FreeVariable">FreeVariable</a>
+      
+                    <a id="class_Sensors"><h2>Sensors</h2></a>
+                    <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                      Read the onboard WIB sensors
+                  </div>
+        <br/>
+      
+      Configuration attributes:
+      <ul>
+            	      Class Sensors has no configuration entries.
+      
+                              <li>
+                  <b>poll_period</b> (OpcUa_UInt32) mandatory
+        <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+              
+				Sensor polling period in seconds. Zero for no automatic
+				polling.
+			
+          </div>
+        
+  
+
+          </li>
+                    </ul>
+
+      Possible children:
+      <a href="#class_CalculatedVariable">CalculatedVariable</a>
+      <a href="#class_FreeVariable">FreeVariable</a>
+      
+                    <a id="class_TimingEndpoint"><h2>TimingEndpoint</h2></a>
+                    <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                      
+			Monitor and reset the timing endpoint on the WIB
+		
+                  </div>
+        <br/>
+      
+      Configuration attributes:
+      <ul>
+            	      Class TimingEndpoint has no configuration entries.
+      
+                              <li>
+                  <b>poll_period</b> (OpcUa_UInt32) mandatory
+        <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+              
+				Endpoint polling period in seconds. Zero for no
+				automatic polling.
+			
+          </div>
+        
+  
+
+          </li>
+                    </ul>
+
+      Possible children:
+      <a href="#class_CalculatedVariable">CalculatedVariable</a>
+      <a href="#class_FreeVariable">FreeVariable</a>
+      
+                    <a id="class_WIB"><h2>WIB</h2></a>
+                    <div style="background-color:#eeeeff"><font color="blue">DOC</font>
+                      
+			Interface to the wib_server control software
+		
+                  </div>
+        <br/>
+      
+      Configuration attributes:
+      <ul>
+                              <li>
+                  <b>zmq_endpoint</b> (UaString) mandatory
+          
+  
+
+          </li>
+              
+            	      Class WIB has no cache variables initialized from the configuration.
+            </ul>
+
+      Possible children:
+      <a href="#class_CalculatedVariable">CalculatedVariable</a>
+      <a href="#class_FreeVariable">FreeVariable</a>
+                        <a href="#class_FEMBPower">FEMBPower</a>
+                                <a href="#class_Sensors">Sensors</a>
+                                <a href="#class_TimingEndpoint">TimingEndpoint</a>
+              
+      
+  <a id="class_CalculatedVariable"><h2>CalculatedVariable</h2></a>
+  A CalculatedVariable is a "synthetic" variable which is based on other "real" variables of the address-space.
+  You can declare a CalculatedVariable under any object in the configuration file.
+  The required attributes are:
+  <ul>
+    <li>name - will be the last part of the address</li>
+    <li>value - analytical formula used to calculate the value of the variable.
+        E.g. to calculate the square of another variable with address x.y you should put <code>x.y^2</code></li>
+  </ul>
+  Detailed documentation of all features of CalculatedVariables is available in the quasar Documentation.
+
+  <a id="class_FreeVariable"><h2>FreeVariable</h2></a>
+  A FreeVariable is an OPC-UA variable which can be added anywhere in the address-space. It is not governed at all by the given server
+  Design and, in fact, the server can't even communicate with that variable (or, at least, there is no direct support for it).
+  A free variable can be always written to by any OPCUA clients.
+  <br>
+  The required attributes are:
+  <ul>
+    <li>name</li>
+    <li>type, one of: Boolean, Byte, SByte, UInt16, Int16, UInt32, Int32, UInt64, Int64, Float, Double, String.</li>
+  </ul>
+  In addition, an initialValue attribute might be given.
+
+</html>

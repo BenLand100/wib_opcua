@@ -1,4 +1,793 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:design projectShortName="OpcUaSampleServerNameChangeItInDesign" xmlns:d="http://cern.ch/quasar/Design" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cern.ch/quasar/Design Design.xsd ">
-  <d:root/>
+<d:design projectShortName="WIB_OPC_UA"
+	xmlns:d="http://cern.ch/quasar/Design"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://cern.ch/quasar/Design Design.xsd "
+	author="Benjamin Land">
+	<d:class name="FEMBPower">
+		<d:devicelogic></d:devicelogic>
+		<d:cachevariable initializeWith="configuration"
+			dataType="OpcUa_Double" name="dc2dc_o1_setpoint"
+			nullPolicy="nullForbidden" addressSpaceWrite="regular">
+			<d:documentation>
+				Voltage setpoint for DC2DC O1 to be used for next set
+				command
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="configuration"
+			dataType="OpcUa_Double" name="dc2dc_o2_setpoint"
+			nullPolicy="nullForbidden" addressSpaceWrite="regular">
+			<d:documentation>
+				Voltage setpoint for DC2DC O2 to be used for next set
+				command
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="configuration"
+			dataType="OpcUa_Double" name="dc2dc_o3_setpoint"
+			nullPolicy="nullForbidden" addressSpaceWrite="regular">
+			<d:documentation>
+				Voltage setpoint for DC2DC O3 to be used for next set
+				command
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="configuration"
+			dataType="OpcUa_Double" name="dc2dc_o4_setpoint"
+			nullPolicy="nullForbidden" addressSpaceWrite="regular">
+			<d:documentation>
+				Voltage setpoint for DC2DC O4 to be used for next set
+				command
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="configuration"
+			dataType="OpcUa_Double" name="ldo_a0_setpoint"
+			nullPolicy="nullForbidden" addressSpaceWrite="regular">
+			<d:documentation>
+				Voltage setpoint for LDO A0 to be used for next set
+				command
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="configuration"
+			dataType="OpcUa_Double" name="ldo_a1_setpoint"
+			nullPolicy="nullForbidden" addressSpaceWrite="regular">
+			<d:documentation>
+				Voltage setpoint for LDO A0 to be used for next set
+				command
+			</d:documentation>
+		</d:cachevariable>
+
+		<d:method name="set" executionSynchronicity="synchronous">
+			<d:argument dataType="OpcUa_Boolean" name="femb0_on"></d:argument>
+			<d:argument dataType="OpcUa_Boolean" name="femb1_on"></d:argument>
+			<d:argument dataType="OpcUa_Boolean" name="femb2_on"></d:argument>
+			<d:argument dataType="OpcUa_Boolean" name="femb3_on"></d:argument>
+			<d:argument dataType="OpcUa_Boolean" name="cold"></d:argument>
+			<d:argument dataType="OpcUa_UInt32" name="stage"></d:argument>
+			<d:returnvalue dataType="OpcUa_Boolean" name="success"></d:returnvalue>
+			<d:documentation>
+				Set the power state of the FEMBs on the WIB using the
+				current voltage settings
+			</d:documentation>
+		</d:method>
+
+		<d:documentation>
+			Control the FEMB power subsystem on the WIB
+		</d:documentation>
+	</d:class>
+
+	<d:class name="Sensors">
+		<d:devicelogic></d:devicelogic>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_4e_v0" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>5V (pre-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_4e_v1" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>5V (post-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_4e_v2" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>VCCPSPLL_Z_1P2V</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_4e_v3" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>PS_DDR4_VTT</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_4c_v0" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>1.2V (pre-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_4c_v1" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>1.2V (post-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_4c_v2" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>3.3V (pre-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_4c_v3" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>3.3V (post-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_48_v0" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>0.85V (pre-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_48_v1" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>0.85V (post-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_48_v2" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>0.9V (pre-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_48_v3" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>0.9V (post-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_48_v4" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>2.5V (pre-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_48_v5" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>2.5V (post-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_48_v6" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>1.8V (pre-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2990_48_v7" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>1.8V (post-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ad7414_49_temp"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>WIB Temp 1</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ad7414_4d_temp"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>WIB Temp 2</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ad7414_4a_temp"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>WIB Temp 3</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2499_15_temp0"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>FEMB0 LMT4644 Temp</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2499_15_temp1"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>FEMB1 LMT4644 Temp</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2499_15_temp2"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>FEMB2 LMT4644 Temp</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2499_15_temp3"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>FEMB3 LMT4644 Temp</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2499_15_temp4"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>WIB LMT4644_1 Temp</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2499_15_temp5"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>WIB LMT4644_2 Temp</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="ltc2499_15_temp6"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>WIB LMT4644_3 Temp</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb0_dc2dc_ltc2991_v0"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 DC2DC O1 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb0_dc2dc_ltc2991_v1"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 DC2DC O1 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb0_dc2dc_ltc2991_v2"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 DC2DC O2 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb0_dc2dc_ltc2991_v3"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 DC2DC O2 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb0_dc2dc_ltc2991_v4"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 DC2DC O3 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb0_dc2dc_ltc2991_v5"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 DC2DC O3 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb0_dc2dc_ltc2991_v6"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 DC2DC O4 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb0_dc2dc_ltc2991_v7"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 DC2DC O4 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb1_dc2dc_ltc2991_v0"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 DC2DC O1 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb1_dc2dc_ltc2991_v1"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 DC2DC O1 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb1_dc2dc_ltc2991_v2"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 DC2DC O2 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb1_dc2dc_ltc2991_v3"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 DC2DC O2 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb1_dc2dc_ltc2991_v4"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 DC2DC O3 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb1_dc2dc_ltc2991_v5"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 DC2DC O3 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb1_dc2dc_ltc2991_v6"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 DC2DC O4 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb1_dc2dc_ltc2991_v7"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 DC2DC O4 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb2_dc2dc_ltc2991_v0"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 DC2DC O1 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb2_dc2dc_ltc2991_v1"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 DC2DC O1 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb2_dc2dc_ltc2991_v2"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 DC2DC O2 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb2_dc2dc_ltc2991_v3"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 DC2DC O2 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb2_dc2dc_ltc2991_v4"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 DC2DC O3 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb2_dc2dc_ltc2991_v5"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 DC2DC O3 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb2_dc2dc_ltc2991_v6"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 DC2DC O4 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb2_dc2dc_ltc2991_v7"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 DC2DC O4 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb3_dc2dc_ltc2991_v0"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 DC2DC O1 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb3_dc2dc_ltc2991_v1"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 DC2DC O1 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb3_dc2dc_ltc2991_v2"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 DC2DC O2 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb3_dc2dc_ltc2991_v3"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 DC2DC O2 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb3_dc2dc_ltc2991_v4"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 DC2DC O3 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb3_dc2dc_ltc2991_v5"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 DC2DC O3 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb3_dc2dc_ltc2991_v6"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 DC2DC O4 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb3_dc2dc_ltc2991_v7"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 DC2DC O4 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a0_ltc2991_v0"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 LDO A0 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a0_ltc2991_v1"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 LDO A0 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a0_ltc2991_v2"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 LDO A0 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a0_ltc2991_v3"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 LDO A0 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a0_ltc2991_v4"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 LDO A0 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a0_ltc2991_v5"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 LDO A0 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a0_ltc2991_v6"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 LDO A0 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a0_ltc2991_v7"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 LDO A0 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a1_ltc2991_v0"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 LDO A1 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a1_ltc2991_v1"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 LDO A1 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a1_ltc2991_v2"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 LDO A1 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a1_ltc2991_v3"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 LDO A1 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a1_ltc2991_v4"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 LDO A1 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a1_ltc2991_v5"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 LDO A1 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a1_ltc2991_v6"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 LDO A1 V (pre-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_ldo_a1_ltc2991_v7"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 LDO A1 V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_bias_ltc2991_v0"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>FEMB0 Bias 5V (pre-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_bias_ltc2991_v1"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB0 Bias 5V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_bias_ltc2991_v2"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>FEMB1 Bias 5V (pre-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_bias_ltc2991_v3"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB1 Bias 5V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_bias_ltc2991_v4"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>FEMB2 Bias 5V (pre-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_bias_ltc2991_v5"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB2 Bias 5V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_bias_ltc2991_v6"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>FEMB3 Bias 5V (pre-sense)</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Double" name="femb_bias_ltc2991_v7"
+			nullPolicy="nullAllowed" addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				FEMB3 Bias 5V (post-sense)
+			</d:documentation>
+		</d:cachevariable>
+
+		<d:cachevariable initializeWith="configuration"
+			dataType="OpcUa_UInt32" name="poll_period" nullPolicy="nullForbidden"
+			addressSpaceWrite="regular">
+			<d:documentation>
+				Sensor polling period in seconds. Zero for no automatic
+				polling.
+			</d:documentation>
+		</d:cachevariable>
+		<d:method name="poll" executionSynchronicity="synchronous">
+			<d:returnvalue dataType="OpcUa_Boolean" name="success"></d:returnvalue>
+			<d:documentation>
+				Poll the status of the sensors immediately
+			</d:documentation>
+		</d:method>
+
+		<d:documentation>Read the onboard WIB sensors</d:documentation>
+	</d:class>
+
+	<d:class name="TimingEndpoint">
+		<d:devicelogic></d:devicelogic>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_UInt32" name="ept_status" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>Firmware status register</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Byte" name="lol_val" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>CDR Loss Of Lock register</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Byte" name="lol_flg_val" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				CDR sticky Loss Of Lock register
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Byte" name="los_val" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				CDR Loss Of Signal register
+			</d:documentation>
+		</d:cachevariable>
+		<d:cachevariable initializeWith="valueAndStatus"
+			dataType="OpcUa_Byte" name="los_flg_val" nullPolicy="nullAllowed"
+			addressSpaceWrite="forbidden"
+			initialStatus="OpcUa_BadWaitingForInitialData">
+			<d:documentation>
+				CDR stick Loss Of Signal register
+			</d:documentation>
+		</d:cachevariable>
+
+		<d:cachevariable initializeWith="configuration"
+			dataType="OpcUa_UInt32" name="poll_period" nullPolicy="nullForbidden"
+			addressSpaceWrite="regular">
+			<d:documentation>
+				Endpoint polling period in seconds. Zero for no
+				automatic polling.
+			</d:documentation>
+		</d:cachevariable>
+		<d:method name="poll" executionSynchronicity="synchronous">
+			<d:returnvalue dataType="OpcUa_Boolean" name="success"></d:returnvalue>
+			<d:documentation>
+				Poll the status of the timing endpoint immediately
+			</d:documentation>
+		</d:method>
+
+		<d:documentation>
+			Monitor and reset the timing endpoint on the WIB
+		</d:documentation>
+	</d:class>
+
+	<d:class name="WIB">
+		<d:devicelogic></d:devicelogic>
+		<d:hasobjects instantiateUsing="configuration" class="FEMBPower"
+			maxOccurs="1" minOccurs="1">
+		</d:hasobjects>
+		<d:hasobjects instantiateUsing="configuration" class="Sensors"
+			maxOccurs="1" minOccurs="1">
+		</d:hasobjects>
+		<d:hasobjects instantiateUsing="configuration"
+			class="TimingEndpoint" maxOccurs="1" minOccurs="1">
+		</d:hasobjects>
+		<d:configentry dataType="UaString" name="zmq_endpoint"
+			storedInDeviceObject="true">
+		</d:configentry>
+
+		<d:method name="getFWVersion"
+			executionSynchronicity="synchronous">
+			<d:returnvalue dataType="OpcUa_UInt32" name="version"></d:returnvalue>
+			<d:documentation>
+				Return the firmware build timestamp register
+			</d:documentation>
+		</d:method>
+
+		<d:method name="getSWVersion"
+			executionSynchronicity="synchronous">
+			<d:returnvalue dataType="UaString" name="version"></d:returnvalue>
+			<d:documentation>
+				Return the software git commit hash
+			</d:documentation>
+		</d:method>
+
+		<d:documentation>
+			Interface to the wib_server control software
+		</d:documentation>
+	</d:class>
+
+	<d:root>
+		<d:hasobjects class="WIB" instantiateUsing="configuration"
+			minOccurs="1" />
+	</d:root>
 </d:design>

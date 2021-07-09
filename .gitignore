@@ -20,3 +20,5 @@ Makefile
 **/generated/
 **/cmake_generated.cmake
 build/
+.project
+*~
