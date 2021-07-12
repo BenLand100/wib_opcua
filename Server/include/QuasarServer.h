@@ -26,8 +26,7 @@
 #include "BaseQuasarServer.h"
 
 /*
- * Example class. This class overrides functionality from BaseQuasarServer in order to make the logic fit an specific implementation.
- * THIS CLASS SHOULD BE MODIFIED BY THE FINAL USER to contain his custom logic, or taken as an example to create his own separate file.
+ * The QuasarServer for the WIB
  */
 class QuasarServer : public BaseQuasarServer{
 public:

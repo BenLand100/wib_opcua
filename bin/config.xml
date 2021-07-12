@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration xmlns="http://cern.ch/quasar/Configuration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cern.ch/quasar/Configuration ../Configuration/Configuration.xsd ">
 	<WIB zmq_endpoint="tcp://localhost:1234" name="wib">
-		<FEMBPower ldo_a1="2.5" name="power" ldo_a0="2.5"
+		<FEMBPower name="power" 
+		    ldo_a1_setpoint="2.5"  ldo_a0_setpoint="2.5"
 			dc2dc_o1_setpoint="4.0" dc2dc_o2_setpoint="4.0"
 			dc2dc_o3_setpoint="4.0" dc2dc_o4_setpoint="4.0">
 		</FEMBPower>

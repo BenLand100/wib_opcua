@@ -23,6 +23,8 @@
 
 #include <Base_DWIB.h>
 
+#include <zmq.hpp>
+
 namespace Device
 {
 
@@ -66,7 +68,8 @@ public:
 
 private:
 
-
+    zmq::context_t context;
+    zmq::socket_t socket;
 
 };
 

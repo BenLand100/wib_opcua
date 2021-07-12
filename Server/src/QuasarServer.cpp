@@ -27,7 +27,8 @@
 #include <LogIt.h>
 #include <shutdown.h>
 
-QuasarServer::QuasarServer() : BaseQuasarServer()
+QuasarServer::QuasarServer() 
+    : BaseQuasarServer()
 {
 
 }
@@ -52,13 +53,12 @@ void QuasarServer::mainLoop()
 
 void QuasarServer::initialize()
 {
-    LOG(Log::INF) << "Initializing Quasar server.";
-
+    LOG(Log::INF) << "Initializing WIB OPC UA server.";
 }
 
 void QuasarServer::shutdown()
 {
-	LOG(Log::INF) << "Shutting down Quasar server.";
+	LOG(Log::INF) << "Shutting down WIB OPC UA server.";
 }
 
 void QuasarServer::initializeLogIt()

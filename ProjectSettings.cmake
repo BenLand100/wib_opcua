@@ -3,10 +3,12 @@
 ## information how to use this file.
 ## ----------------------------------------------------
 
-set(CUSTOM_SERVER_MODULES )
+find_package(Protobuf REQUIRED)
+
+set(CUSTOM_SERVER_MODULES WIBProto )
 set(EXECUTABLE OpcUaServer)
-set(SERVER_INCLUDE_DIRECTORIES  )
-set(SERVER_LINK_LIBRARIES  )
+set(SERVER_INCLUDE_DIRECTORIES ${Protobuf_INCLUDE_DIRS} )
+set(SERVER_LINK_LIBRARIES ${Protobuf_LIBRARIES} zmq )
 set(SERVER_LINK_DIRECTORIES  )
 
 ##

@@ -22,6 +22,9 @@
 
 #include <DWIB.h>
 #include <ASWIB.h>
+#include <LogIt.h>
+
+#include "wib.hh"
 
 namespace Device
 {
@@ -50,12 +53,13 @@ namespace Device
 DWIB::DWIB (
     const Configuration::WIB& config,
     Parent_DWIB* parent
-):
-    Base_DWIB( config, parent)
-
-    /* fill up constructor initialization list here */
+)
+    : Base_DWIB( config, parent)
+    , context(1)
+    , socket(context, ZMQ_REQ)
 {
-    /* fill up constructor body here */
+    LOG(Log::INF) << "Connecting to WIB at " << config.zmq_endpoint();
+    socket.connect(config.zmq_endpoint());
 }
 
 /* sample dtr */
