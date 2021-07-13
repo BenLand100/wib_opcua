@@ -22,6 +22,7 @@
 #define __DTimingEndpoint__H__
 
 #include <Base_DTimingEndpoint.h>
+#include "timer.hh"
 
 namespace Device
 {
@@ -60,10 +61,12 @@ private:
     // ----------------------------------------------------------------------- *
 
 public:
+    
+    void update();
 
 private:
-
-
+    
+    Timer poll_timer;
 
 };
 

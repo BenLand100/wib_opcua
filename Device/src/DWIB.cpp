@@ -21,6 +21,9 @@
 #include <Configuration.hxx> // TODO; should go away, is already in Base class for ages
 
 #include <DWIB.h>
+#include <DSensors.h>
+#include <DFEMBPower.h>
+#include <DTimingEndpoint.h>
 #include <ASWIB.h>
 #include <LogIt.h>
 
@@ -53,13 +56,11 @@ namespace Device
 DWIB::DWIB (
     const Configuration::WIB& config,
     Parent_DWIB* parent
-)
-    : Base_DWIB( config, parent)
-    , context(1)
-    , socket(context, ZMQ_REQ)
+): 
+    Base_DWIB( config, parent)
 {
     LOG(Log::INF) << "Connecting to WIB at " << config.zmq_endpoint();
-    socket.connect(config.zmq_endpoint());
+    wib.connect(config.zmq_endpoint());
 }
 
 /* sample dtr */
@@ -76,13 +77,27 @@ UaStatus DWIB::callGetFWVersion (
     OpcUa_UInt32& version
 )
 {
-    return OpcUa_BadNotImplemented;
+    wib::GetTimestamp req;
+    wib::GetTimestamp::Timestamp rep;
+    if (wib.send_command(req,rep,10000)) {
+        version = rep.timestamp();
+        return OpcUa_Good;
+    } else {
+        return OpcUa_Bad;
+    }
 }
 UaStatus DWIB::callGetSWVersion (
     UaString& version
 )
 {
-    return OpcUa_BadNotImplemented;
+    wib::GetSWVersion req;
+    wib::GetSWVersion::Version rep;
+    if (wib.send_command(req,rep,10000)) {
+        version = rep.version().c_str();
+        return OpcUa_Good;
+    } else {
+        return OpcUa_Bad;
+    }
 }
 
 // 3333333333333333333333333333333333333333333333333333333333333333333333333
@@ -90,5 +105,12 @@ UaStatus DWIB::callGetSWVersion (
 // 3     Below you put bodies for custom methods defined for this class.   3
 // 3     You can do whatever you want, but please be decent.               3
 // 3333333333333333333333333333333333333333333333333333333333333333333333333
+
+void DWIB::update() 
+{
+    fembpower()->update();
+    sensors()->update();
+    timingendpoint()->update();
+}
 
 }

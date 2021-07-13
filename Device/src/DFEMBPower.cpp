@@ -21,6 +21,7 @@
 #include <Configuration.hxx> // TODO; should go away, is already in Base class for ages
 
 #include <DFEMBPower.h>
+#include <DWIB.h>
 #include <ASFEMBPower.h>
 
 namespace Device
@@ -78,7 +79,35 @@ UaStatus DFEMBPower::callSet (
     OpcUa_Boolean& success
 )
 {
-    return OpcUa_BadNotImplemented;
+    auto *as = getAddressSpaceLink();
+    wib::ConfigurePower conf_req;
+    conf_req.set_dc2dc_o1(as->getDc2dc_o1_setpoint());
+    conf_req.set_dc2dc_o2(as->getDc2dc_o2_setpoint());
+    conf_req.set_dc2dc_o3(as->getDc2dc_o3_setpoint());
+    conf_req.set_dc2dc_o4(as->getDc2dc_o4_setpoint());
+    conf_req.set_ldo_a0(as->getLdo_a0_setpoint());
+    conf_req.set_ldo_a1(as->getLdo_a1_setpoint());
+    wib::Status conf_rep;
+    if (getParent()->wib.send_command(conf_req,conf_rep,10000)) {
+        if (!conf_rep.success()) return OpcUa_Bad;
+    } else {
+        return OpcUa_Bad;
+    }
+    
+    wib::PowerWIB req;
+    req.set_femb0(femb0_on);
+    req.set_femb1(femb1_on);
+    req.set_femb2(femb2_on);
+    req.set_femb3(femb3_on);
+    req.set_cold(cold);
+    req.set_stage(stage);
+    wib::Status rep;
+    if (getParent()->wib.send_command(req,rep,10000)) {
+        success = rep.success();
+        return OpcUa_Good;
+    } else {
+        return OpcUa_Bad;
+    }
 }
 
 // 3333333333333333333333333333333333333333333333333333333333333333333333333
@@ -86,5 +115,9 @@ UaStatus DFEMBPower::callSet (
 // 3     Below you put bodies for custom methods defined for this class.   3
 // 3     You can do whatever you want, but please be decent.               3
 // 3333333333333333333333333333333333333333333333333333333333333333333333333
+
+void DFEMBPower::update()
+{
+}
 
 }

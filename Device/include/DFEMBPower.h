@@ -67,9 +67,9 @@ private:
 
 public:
 
+    void update();
+
 private:
-
-
 
 };
 

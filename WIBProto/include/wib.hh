@@ -6,26 +6,48 @@
 #include <zmq.hpp>
 #include <string>
 
-template <class R, class C>
-void send_command(zmq::socket_t &socket, const C &msg, R &repl) {
+class WIB_ZMQ {
 
-    wib::Command command;
-    command.mutable_cmd()->PackFrom(msg);
+public:
+
+    WIB_ZMQ();
+    ~WIB_ZMQ();
+
+    void connect(const std::string &zmq_endpoint);
+
+    template <class R, class C>
+    bool send_command(const C &msg, R &repl, int timeout_ms = -1) {
+
+        wib::Command command;
+        command.mutable_cmd()->PackFrom(msg);
+        
+        std::string cmd_str;
+        command.SerializeToString(&cmd_str);
+        
+        zmq::message_t request(cmd_str.size());
+        memcpy((void*)request.data(), cmd_str.c_str(), cmd_str.size());
+        socket.send(request,zmq::send_flags::none);
+        
+        if (zmq_poll(&poller, 1, timeout_ms) <= 0) {
+            return false;
+        }
+        
+        zmq::message_t reply;
+        socket.recv(reply,zmq::recv_flags::none);
+        
+        std::string reply_str(static_cast<char*>(reply.data()), reply.size());
+        repl.ParseFromString(reply_str);
+        
+        return true;
+    }
     
-    std::string cmd_str;
-    command.SerializeToString(&cmd_str);
+protected:
     
-    zmq::message_t request(cmd_str.size());
-    memcpy((void*)request.data(), cmd_str.c_str(), cmd_str.size());
-    socket.send(request,zmq::send_flags::none);
+    zmq::context_t context;
+    zmq::socket_t socket;
+    zmq::pollitem_t poller;
     
-    zmq::message_t reply;
-    socket.recv(reply,zmq::recv_flags::none);
-    
-    std::string reply_str(static_cast<char*>(reply.data()), reply.size());
-    repl.ParseFromString(reply_str);
-    
-}
+};
 
 #endif
 

@@ -27,6 +27,9 @@
 #include <LogIt.h>
 #include <shutdown.h>
 
+#include "DRoot.h"
+#include "DWIB.h"
+
 QuasarServer::QuasarServer() 
     : BaseQuasarServer()
 {
@@ -43,10 +46,13 @@ void QuasarServer::mainLoop()
     printServerMsg("Press "+std::string(SHUTDOWN_SEQUENCE)+" to shutdown server");
 
     // Wait for user command to terminate the server thread.
-
     while(ShutDownFlag() == 0)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        Device::DRoot *root = Device::DRoot::getInstance();
+        for (Device::DWIB *wib : root->wibs()) {
+            wib->update();
+        }
     }
     printServerMsg(" Shutting down server");
 }

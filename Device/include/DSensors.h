@@ -23,6 +23,8 @@
 
 #include <Base_DSensors.h>
 
+#include "timer.hh"
+
 namespace Device
 {
 
@@ -60,10 +62,12 @@ private:
     // ----------------------------------------------------------------------- *
 
 public:
+    
+    void update();
 
 private:
-
-
+    
+    Timer poll_timer;
 
 };
 

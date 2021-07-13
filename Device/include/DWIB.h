@@ -23,6 +23,7 @@
 
 #include <Base_DWIB.h>
 
+#include "wib.hh"
 #include <zmq.hpp>
 
 namespace Device
@@ -65,11 +66,15 @@ private:
     // ----------------------------------------------------------------------- *
 
 public:
+    friend DFEMBPower;
+    friend DTimingEndpoint;
+    friend DSensors;
+    
+    void update();
 
 private:
-
-    zmq::context_t context;
-    zmq::socket_t socket;
+    
+    WIB_ZMQ wib;
 
 };
 
