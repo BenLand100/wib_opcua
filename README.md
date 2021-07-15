@@ -9,7 +9,7 @@ Work in progress.
 ## Overview
 
 This interfaces with the wib_server via the standard ZMQ/protobuf protocol that
-wib_server supplies, and implements and control and monitoring interface over
+wib_server supplies, and implements a control and monitoring interface over
 OPC UA. There exists a WIB object with metadata about the WIB and subsystems for
 FEMBPower, TimingEndpoint, and Sensors. See [the quasar-generated diagram](Design/diagram.pdf) 
 for more information.
