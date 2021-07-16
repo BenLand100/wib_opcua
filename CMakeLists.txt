@@ -137,7 +137,7 @@ set(TARGET_LIBS
         ${SERVER_LINK_LIBRARIES}
         )
 
-target_link_libraries ( ${EXECUTABLE} ${TARGET_LIBS} WIBUtil )
+target_link_libraries ( ${EXECUTABLE} ${TARGET_LIBS} )
 
 if(BUILD_SERVER_SHARED_LIB)
         set( SERVER_SHARED_LIB_TARGET "${EXECUTABLE}Object" )

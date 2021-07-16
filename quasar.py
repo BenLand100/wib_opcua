@@ -35,7 +35,6 @@ import os
 import sys
 import inspect
 import webbrowser
-from colorama import Fore, Style
 
 this_script_path = os.path.abspath(sys.argv[0])
 sys.path.insert(0, os.path.join(os.path.dirname(this_script_path), 'FrameworkInternals'))
@@ -97,7 +96,7 @@ def main():
             else:
                 callee(*args)
         except (WrongReturnValue, WrongArguments, Mistake) as exception:
-            print(Fore.RED + str(exception) + Style.RESET_ALL)
+            print(exception)
             sys.exit(1)
         except:
             quasar_basic_utils.quasaric_exception_handler()

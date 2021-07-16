@@ -7,6 +7,7 @@ ExternalProject_Add(
     ${OPT_MODULE_NAME}
     GIT_REPOSITORY ${OPT_MODULE_URL}
     GIT_TAG ${OPT_MODULE_TAG}
+    GIT_CONFIG http.sslVerify=false
     PREFIX "${CMAKE_BINARY_DIR}/FrameworkInternals/EnabledModules/${OPT_MODULE_NAME}_download"
     SOURCE_DIR "${CMAKE_BINARY_DIR}/${OPT_MODULE_NAME}"
     CONFIGURE_COMMAND ""

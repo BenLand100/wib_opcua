@@ -33,7 +33,6 @@ ANY WAY OUT OF  THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF 
 '''
 
 from lxml import etree, objectify
-from colorama import Fore, Style
 from lxml.objectify import ObjectifiedDataElement
 from copy import deepcopy
 import logging
@@ -55,9 +54,7 @@ class DesignInspector():
         xpath_expr = expr.format(*args)
         result = self.tree.xpath(xpath_expr, namespaces=QUASAR_NAMESPACES)
         if DEBUG_XPATH:
-            print(Fore.YELLOW + "xpath({0}) gives {1}".format(
-                xpath_expr, result)
-                  + Style.RESET_ALL)
+            print("xpath({0}) gives {1}".format(xpath_expr, result))
         return result
 
     def xpath_relative_to_object(self, object, xpath_expression):

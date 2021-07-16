@@ -33,7 +33,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import lxml.etree
 import re
-from colorama import Fore, Style
 
 def cap_first(word):
     """Capitalizes first letter of the string.
@@ -47,7 +46,7 @@ def cpp_comments_to_cmake_comments(block):
 
 def template_debug(*args):
     """This filter is used to print debug messages from a Jinja transform"""
-    print(Fore.MAGENTA + ' '.join([str(x) for x in args]) + Style.RESET_ALL)
+    print(' '.join([str(x) for x in args]))
     return '' # Important, it's a no-output Jinja filter!!
 
 def sorted_by_objectified_attr(items, attribute):

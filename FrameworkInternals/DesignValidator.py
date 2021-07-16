@@ -40,7 +40,6 @@ validate_second_stage. Running validate will invoke both stages.
 '''
 
 import io
-from colorama import Fore, Style
 from lxml import etree
 from quasarExceptions import DesignFlaw
 import DesignInspector
@@ -108,7 +107,7 @@ class DesignValidator():
            is not valid"""
         self.validate_first_stage()
         self.validate_second_stage()
-        print(Fore.GREEN + 'Your Design is valid.' + Style.RESET_ALL)
+        print('Your Design is valid.')
 
     def validate_first_stage(self):
         """Performs only stage 1 validation. Internal method"""

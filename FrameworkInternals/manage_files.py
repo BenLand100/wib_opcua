@@ -41,7 +41,6 @@ import platform
 import hashlib
 import shutil  # for copying files, etc
 import glob
-from colorama import Fore, Style
 from quasar_basic_utils import yes_or_no
 import version_control_interface
 from DesignInspector import DesignInspector
@@ -513,9 +512,8 @@ def symlinkRuntimeDeps(context, wildcard=None):
                 linkerFunction(config_file, os.path.join(context['projectBinaryDir'], 'bin', os.path.basename(config_file)))
     except OSError as exception:
         if exception.errno == errno.ENOENT:
-            print(Fore.RED + 'You can call this only when build directory exists.'
-                  + Style.RESET_ALL)
-            print(Fore.GREEN + 'E.g. run it after running "quasar.py build"' + Style.RESET_ALL)
+            print('You can call this only when build directory exists.')
+            print('E.g. run it after running "quasar.py build"')
         else:
             raise
 
@@ -523,8 +521,8 @@ def _style_it(file_path, vcs):
     # check if file in the VCS (so, safe)
     # TODO: can put it on the quasar's VCS interface
     if vcs.file_has_uncommitted_changes(file_path):
-        print(f'{file_path}: {Fore.RED}Cowardly refusing to touch a file which is new or modified'
-            f'{Style.RESET_ALL} (i.e. not committed), because you won\'t have any backup')
+        print(f'{file_path}: Cowardly refusing to touch a file which is new or modified'
+            f'(i.e. not committed), because you won\'t have any backup')
         return
     # perform styling
     with open(file_path, 'rb') as file:
@@ -532,9 +530,9 @@ def _style_it(file_path, vcs):
     with open(file_path, 'wb') as file:
         run_indent_tool(unindented_content, file)
     if vcs.file_has_uncommitted_changes(file_path):
-        print (f'{file_path}: {Fore.GREEN}Style fixed, commit if happy.{Style.RESET_ALL}')
+        print (f'{file_path}: Style fixed, commit if happy.')
     else:
-        print (f'{file_path}: {Fore.BLUE}Nothing changed{Style.RESET_ALL}')
+        print (f'{file_path}: Nothing changed')
 
 def command_style_it(context, *args):
     '''Will run source code styler for listed files (or --device)'''

@@ -21,7 +21,6 @@ import sys
 import traceback
 import pdb
 import logging
-from colorama import Fore, Back, Style
 
 def extract_argument(inData, key):
     """If key is present in inData, will remove it and the following element from the list.
@@ -43,23 +42,17 @@ def quasaric_exception_handler():
     """Prints last exception in a nicer way (colors etc), plus let's run pdb to inspect it on the
        go"""
     extype, value, tb = sys.exc_info()
-    print(Fore.RED + 'quasar tooling caught an exception of type {0} when executing '.format(
+    print('quasar tooling caught an exception of type {0} when executing '.format(
           type(value).__name__)
-          + Fore.MAGENTA + ' '.join(sys.argv) + Style.RESET_ALL)
-    print('Exception was: ' + Back.RED +  Fore.WHITE + str(value) + Style.RESET_ALL)
+          + ' '.join(sys.argv))
+    print('Exception was: ' + str(value))
     traceback.print_exc()
     if os.getenv('QUASAR_RUN_PDB', False):
-        print(Fore.RED
-              + ('... running pdb now (if pdb shell is gone then maybe you want to repeat that '
-                 'particular quasar command alone)') + Style.RESET_ALL)
-        print(Fore.GREEN
-              + 'remove QUASAR_RUN_PDB from your shell environment if you dont wish to run pdb'
-              + Style.RESET_ALL)
+        print('... running pdb now (if pdb shell is gone then maybe you want to repeat that particular quasar command alone)')
+        print('remove QUASAR_RUN_PDB from your shell environment if you dont wish to run pdb')
         pdb.post_mortem(tb)
     else:
-        print(Fore.GREEN
-              + ("Export QUASAR_RUN_PDB to your environment if you wish to automatically start "
-                 "Python debugger! (e.g. 'export QUASAR_RUN_PDB=1' in bash)") + Style.RESET_ALL)
+        print("Export QUASAR_RUN_PDB to your environment if you wish to automatically start Python debugger! (e.g. 'export QUASAR_RUN_PDB=1' in bash)")
 
 def get_quasar_version(where=''):
     """Returns version of quasar deployed in the current project or anothe project if
@@ -69,7 +62,7 @@ def get_quasar_version(where=''):
 
 def print_quasar_version():
     """Prints currently deployed quasar version"""
-    print("quasar version: " + Fore.GREEN + get_quasar_version() + Style.RESET_ALL)
+    print("quasar version: " + get_quasar_version())
 
 def initialize_logging():
     """Initializes Python's logging"""
@@ -129,8 +122,6 @@ def print_logo(skip_top=0, skip_bottom=0):
     '''
     for i in range(0,skip_top):
         print()
-    print(Fore.BLUE)
     print(lines)
-    print(Style.RESET_ALL)
     for i in range(0,skip_bottom):
         print()

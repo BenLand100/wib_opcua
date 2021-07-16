@@ -29,7 +29,6 @@ from commandMap import getCommand
 import subprocess
 import enum
 import jinja2
-from colorama import Fore, Style
 from DesignInspector import DesignInspector
 from Oracle import Oracle
 import transform_filters
@@ -122,13 +121,12 @@ def run_indent_tool(unindented_content, fout):
         completed_indenter_process = subprocess.run(['astyle'], input=unindented_content,
                                                     stdout=subprocess.PIPE, check=True)
     except FileNotFoundError:
-        print(Fore.YELLOW +
+        print(
             ("Achtung, achtung. 'astyle' was not found in your system. This violates the "
             "requirements for running quasar. We will try now with 'indent' tool as fallback "
             "(maybe it's Friday afternoon now and you want to go home). "
             "If this message is annoying to you, it's good and intended. Get astyle "
-            "installed asap, latest Monday morning.") +
-            Style.RESET_ALL)
+            "installed asap, latest Monday morning."))
         try:
             completed_indenter_process = subprocess.run(['indent'], input=unindented_content,
                                                         stdout=subprocess.PIPE, check=True)
@@ -164,17 +162,15 @@ def transformDesignByJinja(designXmlPath, transformPath, outputFile, additionalP
     unindented_content = env.get_template(os.path.basename(transformPath)).render(render_args).encode('utf-8')
     if indent_cpp:
         run_indent_tool(unindented_content, fout)
-        print(Fore.BLUE +
+        print(
             'quasar Jinja2 generator: Generated+indented {0}, wrote {1} bytes (unindented size: {2})'.format(
                 outputFile,
                 fout.tell(),
-                len(unindented_content)) +
-            Style.RESET_ALL)
+                len(unindented_content)) )
     else:
         fout.write(unindented_content)
-        print(Fore.BLUE +
-            'quasar Jinja2 generator: Generated {0}, wrote {1} bytes'.format(outputFile, fout.tell()) +
-            Style.RESET_ALL)
+        print(
+            'quasar Jinja2 generator: Generated {0}, wrote {1} bytes'.format(outputFile, fout.tell()))
 
 def transformDesign(transform_path, outputFile, requiresMerge, astyleRun, additionalParam=None):
     """Generates a file, applying a transform (XJinja2) to Design.xml

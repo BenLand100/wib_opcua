@@ -35,7 +35,6 @@ ANY WAY OUT OF  THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF 
 import os
 import re
 import shutil
-from colorama import Fore, Style
 from manage_files import mfInstall
 from DesignInspector import DesignInspector
 from quasar_basic_utils import yes_or_no, get_quasar_version, print_logo
@@ -73,7 +72,7 @@ def fix_empty_project_short_name(destination):
             print('Remember: you have to do it yourself ;-) ')
 
 def __print_post_install_notes():
-    print(f'Welcome to quasar {Style.BRIGHT}{get_quasar_version()}{Style.RESET_ALL} !')
+    print(f'Welcome to quasar {get_quasar_version()} !')
     print()
     print('For reference on using quasar see:')
     print('1. Documentation/quasar.html (from your current directory),')
@@ -82,7 +81,7 @@ def __print_post_install_notes():
     print('')
     print('For support, contact quasar-developers@cern.ch')
     print()
-    print(f'Good luck with creating your OPCUA software with quasar {Style.BRIGHT + Fore.GREEN};-){Style.RESET_ALL}')
+    print(f'Good luck with creating your OPCUA software with quasar ;-)')
     print()
 
 def upgradeProject(destination):
@@ -99,8 +98,8 @@ def upgradeProject(destination):
 
     incumbent_quasar_version = get_quasar_version(destination)
     target_quasar_version = get_quasar_version()
-    print((f'You are upgrading from version {Style.BRIGHT}{Fore.GREEN}{incumbent_quasar_version}{Style.RESET_ALL}'
-           f' to {Style.BRIGHT}{Fore.GREEN}{target_quasar_version}{Style.RESET_ALL}. \n'
+    print((f'You are upgrading from version {incumbent_quasar_version}'
+           f' to {target_quasar_version}. \n'
            f"It is advised that you read quasar's Documentation/ChangeLog.html and check what "
            f'needs to be done for upgrade between current and target version.'))
     yn = yes_or_no('Have you read the changelog and understood the remarks and want to upgrade?')
@@ -110,7 +109,7 @@ def upgradeProject(destination):
     installFramework(destination)
     fix_empty_project_short_name(destination)
     print_logo(skip_top=2, skip_bottom=2)
-    print(f'Your quasar project in {Style.BRIGHT}{destination}{Style.RESET_ALL} was upgraded')
+    print(f'Your quasar project in {destination} was upgraded')
     print()
     __print_post_install_notes()
 
@@ -122,15 +121,15 @@ def createProject(destination):
     """
 
     if os.path.exists(destination):
-        print(f'The chosen directory {Fore.RED}already exists{Style.RESET_ALL} so we can\'t create a new project there.')
-        print(f'If the existing directory already contains a quasar project, try {Style.BRIGHT}upgrade_project{Style.RESET_ALL} command instead.')
+        print(f'The chosen directory already exists so we can\'t create a new project there.')
+        print(f'If the existing directory already contains a quasar project, try upgrade_project command instead.')
         return
     destination = os.path.abspath(destination)
     os.makedirs(destination)
     print('Created installation folder: ' + destination)
     installFramework(destination)
     print_logo(skip_top=2, skip_bottom=2)
-    print(f'A new quasar project was created in {Style.BRIGHT}{destination}{Style.RESET_ALL}')
+    print(f'A new quasar project was created in {destination}')
     print()
     __print_post_install_notes()
 

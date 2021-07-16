@@ -8,7 +8,7 @@ find_package(Protobuf REQUIRED)
 set(CUSTOM_SERVER_MODULES WIBProto )
 set(EXECUTABLE OpcUaServer)
 set(SERVER_INCLUDE_DIRECTORIES ${Protobuf_INCLUDE_DIRS} )
-set(SERVER_LINK_LIBRARIES ${Protobuf_LIBRARIES} zmq )
+set(SERVER_LINK_LIBRARIES protobuf zmq )
 set(SERVER_LINK_DIRECTORIES  )
 
 ##

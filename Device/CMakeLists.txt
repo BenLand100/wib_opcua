@@ -18,7 +18,7 @@
 
 # QUASAR_IS_CMAKE_BUILD_ENTRY_POINT should evaluate to true whenever plain CMake is the entry point, like in Yocto
 if(${QUASAR_IS_CMAKE_BUILD_ENTRY_POINT})
-    include(${PROJECT_SOURCE_DIR}/Device/generated/cmake_header.cmake)
+    include(${PROJECT_BINARY_DIR}/Device/generated/cmake_header.cmake)
 else(${QUASAR_IS_CMAKE_BUILD_ENTRY_POINT})
     include(${PROJECT_BINARY_DIR}/Device/generated/cmake_header.cmake)
 endif(${QUASAR_IS_CMAKE_BUILD_ENTRY_POINT})

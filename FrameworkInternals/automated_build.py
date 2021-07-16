@@ -22,6 +22,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 import os
 import platform
 import subprocess
+import multiprocessing
 import re
 from generateCmake import generateCmake, BuilderDefault
 from externalToolCheck import subprocessWithImprovedErrors
@@ -108,7 +109,5 @@ def automatedBuild(context, *args):
         # From Piotr: here we attempt to run the build concurrently; it might look a bit clumsy,
         # but the reason is that passing "-j" without an argument behaves differently on different
         # builder (e.g. 'make -j' will spawn possibly infinite # of jobs that already killed some systems ...)
-        process = subprocess.Popen(["nproc"], stdout=subprocess.PIPE)
-        nproc_out, err = process.communicate()
-        num_cpus = int(nproc_out)
+        num_cpus = multiprocessing.cpu_count()
         subprocessWithImprovedErrors([getCommand("cmake"), "--build", ".", "--config", builder, "--", "-j", str(num_cpus)], "cmake --build")

@@ -38,7 +38,6 @@ import subprocess
 from subprocess import Popen
 from commandMap import getCommand
 from quasarExceptions import WrongReturnValue
-from colorama import Fore, Back, Style
 
 StandardMessage = 'Check Documentation/quasar.html for instructions'
 
@@ -53,7 +52,7 @@ def checkExecutableExists(executableKeyName, doesNotExistErrorMessage, executabl
         if returnCode == 0:
             print((
                 f"executable [key:{executableKeyName}, command: "
-                f"{getCommand(executableKeyName)}] {Fore.GREEN}exists{Style.RESET_ALL}"))
+                f"{getCommand(executableKeyName)}] exists"))
         else:
             raise Exception(errorMessage)
     except:
@@ -102,7 +101,7 @@ def tryDependency(functionCheck, critical=True):
         functionCheck()
     except Exception as e:
         if(critical):
-            print(f"{Fore.RED}CRITICAL dependency missing: {str(e)}{Style.RESET_ALL}")
+            print(f"CRITICAL dependency missing: {str(e)}")
         else:
             print("Optional dependency missing: " + str(e))
 
